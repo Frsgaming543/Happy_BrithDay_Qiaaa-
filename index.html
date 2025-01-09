@@ -12,6 +12,38 @@
 	
 	<style>
 	
+	.audio-player {
+	  z-index: 3;
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #ffd1dc, #ffc1e3);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+    .audio-player:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .audio-player i {
+      font-size: 24px;
+      color: #fff;
+      transition: color 0.3s ease;
+    }
+    .audio-player i.fa-pause {
+      color: #ff6f91;
+    }
+    audio {
+      display: none;
+    }
+	
 	/* Countdown Overlay */
 .countdown {
   position: fixed;
@@ -132,6 +164,8 @@
 .message-content::-webkit-scrollbar-thumb:hover {
   background-color: #aaa;
 }</style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 	
 	<script type="text/javascript">
 			let jqueryParams=[],jQuery=function(r){return jqueryParams=[...jqueryParams,r],jQuery},$=function(r){return jqueryParams=[...jqueryParams,r],$};window.jQuery=jQuery,window.$=jQuery;let customHeadScripts=!1;jQuery.fn=jQuery.prototype={},$.fn=jQuery.prototype={},jQuery.noConflict=function(r){if(window.jQuery)return jQuery=window.jQuery,$=window.jQuery,customHeadScripts=!0,jQuery.noConflict},jQuery.ready=function(r){jqueryParams=[...jqueryParams,r]},$.ready=function(r){jqueryParams=[...jqueryParams,r]},jQuery.load=function(r){jqueryParams=[...jqueryParams,r]},$.load=function(r){jqueryParams=[...jqueryParams,r]},jQuery.fn.ready=function(r){jqueryParams=[...jqueryParams,r]},$.fn.ready=function(r){jqueryParams=[...jqueryParams,r]};</script>
@@ -253,6 +287,7 @@ body.custom-background { background-color: #ffffff; }
 
 
 <div id="main-content" class="hidden">
+  
 <!-- Popup Pesan -->
   <div id="popup" class="popup hidden">
     <div class="popup-content">
@@ -329,7 +364,13 @@ As you celebrate another year of life, I wish for all your dreams to come true a
 			</div>
 			</div>
 				
-				
+				<div class="audio-player" id="audioPlayer">
+  <i id="playPauseIcon" class="fas fa-play"></i>
+</div>
+<audio id="myAudio">
+  <source src="https://res.cloudinary.com/dn50kwgk4/video/upload/v1676959552/Romantic_Happy_Birthday_Arranged_by_Miranda_Wong_Piano_Cover_t79n0e.mp4" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 				
 				
 			</div>
@@ -1400,7 +1441,7 @@ window.addEventListener('click', (e) => {
 const mainContent = document.getElementById('main-content');
 
 // Tanggal akhir countdown
-const endDate = new Date('January 9, 2025 00:00:00').getTime();
+const endDate = new Date('January 12, 2025 00:00:00').getTime();
 
 // Update countdown setiap detik
 const interval = setInterval(() => {
@@ -1423,5 +1464,21 @@ const interval = setInterval(() => {
     document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
   }
 }, 1000);</script>
+
+<script>
+  const audio = document.getElementById('myAudio');
+  const audioPlayer = document.getElementById('audioPlayer');
+  const playPauseIcon = document.getElementById('playPauseIcon');
+
+  audioPlayer.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playPauseIcon.classList.replace('fa-play', 'fa-pause');
+    } else {
+      audio.pause();
+      playPauseIcon.classList.replace('fa-pause', 'fa-play');
+    }
+  });
+</script>
 
 <script src="//cdn.jsdelivr.net/npm/eruda"></script></body><div id="eruda" style="all: initial;"></div><div class="__chobitsu-hide__" style="all: initial;"></div></html>
